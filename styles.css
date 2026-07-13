@@ -1,0 +1,230 @@
+/* ==================================================================
+   EROS GOMES — Links · satélite compacto do portfólio "OK de Máquina"
+   Mesma folha, mesma tinta, mesmo carimbo — só que cabe no polegar.
+   ================================================================== */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("assets/fonts/bricolage-grotesque-var-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("assets/fonts/libre-franklin-var-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --papel: #f4f1ea;
+  --couche: #f5f4f0;
+  --tinta: #2b2622;
+  --grafite: #6b645c;
+  --carimbo: #cf3a2b;
+  --carimbo-prensa: #b02f22;
+  --carimbo-texto: #a3281c;
+  --carimbo-hover: #8f2418;
+  --registro: #2b3c96;
+  --verniz: #dfdace;
+  --whats-verde: #25d366;
+  --whats-verde-escuro: #1da851;
+
+  --f-display: "Bricolage Grotesque", "Arial Narrow", sans-serif;
+  --f-body: "Libre Franklin", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@supports (color: oklch(50% 0 0)) {
+  :root {
+    --papel: oklch(95.8% 0.008 95);
+    --couche: oklch(96.8% 0.003 100);
+    --tinta: oklch(23.5% 0.01 70);
+    --grafite: oklch(45% 0.012 75);
+    --carimbo: oklch(56% 0.21 29);
+    --carimbo-prensa: oklch(48% 0.2 29);
+    --carimbo-texto: oklch(45% 0.185 29);
+    --carimbo-hover: oklch(40% 0.16 29);
+    --registro: oklch(38% 0.17 265);
+    --verniz: oklch(88.5% 0.006 95);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--f-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; height: auto; display: block; }
+::selection { background: var(--carimbo); color: var(--papel); }
+:focus-visible { outline: 2px solid var(--carimbo); outline-offset: 3px; }
+
+.barra-cor { display: flex; height: 6px; }
+.barra-cor span { flex: 1; }
+.barra-cor span:nth-child(1) { background: oklch(70% 0.13 220); }
+.barra-cor span:nth-child(2) { background: oklch(62% 0.24 350); }
+.barra-cor span:nth-child(3) { background: oklch(88% 0.16 100); }
+.barra-cor span:nth-child(4) { background: var(--tinta); }
+.barra-cor span:nth-child(5) { background: var(--carimbo); }
+.barra-cor span:nth-child(6) { background: var(--registro); }
+
+.folha {
+  max-width: 440px;
+  margin-inline: auto;
+  padding: clamp(32px, 8vh, 64px) 24px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: clamp(112px, 30vw, 140px);
+  height: clamp(112px, 30vw, 140px);
+  margin: 0 0 20px;
+}
+.avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid var(--verniz);
+  background: var(--couche);
+}
+.avatar-wrap .faca {
+  position: absolute;
+  inset: -7px;
+  border: 1.5px dashed var(--carimbo);
+  border-radius: 26px;
+  opacity: 0.7;
+}
+.marcas { position: absolute; inset: 0; pointer-events: none; }
+.marcas span { position: absolute; width: 12px; height: 12px; color: var(--grafite); opacity: 0.85; }
+.marcas span::before, .marcas span::after { content: ""; position: absolute; background: currentColor; }
+.marcas span::before { width: 12px; height: 1.5px; }
+.marcas span::after { width: 1.5px; height: 12px; }
+.marcas .no { top: -12px; left: -12px; }
+.marcas .no::before { bottom: 0; } .marcas .no::after { right: 0; }
+.marcas .nd { top: -12px; right: -12px; }
+.marcas .nd::before { bottom: 0; } .marcas .nd::after { left: 0; }
+.marcas .so { bottom: -12px; left: -12px; }
+.marcas .so::before { top: 0; } .marcas .so::after { right: 0; }
+.marcas .sd { bottom: -12px; right: -12px; }
+.marcas .sd::before { top: 0; } .marcas .sd::after { left: 0; }
+
+h1 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-stretch: 82%;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 8vw, 2.4rem);
+  line-height: 1;
+}
+h1 .ponto { color: var(--carimbo); }
+
+.bio {
+  margin: 12px 0 0;
+  max-width: 34ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--grafite);
+}
+
+.selo-disp {
+  margin-top: 14px;
+  display: inline-block;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-stretch: 88%;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--carimbo-texto);
+  border: 1.5px solid var(--carimbo);
+  padding: 5px 10px;
+  transform: rotate(-1deg);
+}
+
+.lista-links {
+  width: 100%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.carimbo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 18px;
+  background: var(--papel);
+  border: 1.5px solid var(--tinta);
+  color: var(--tinta);
+  text-decoration: none;
+  text-align: left;
+  transition: background-color 0.15s ease, transform 0.12s var(--ease), border-color 0.15s ease, color 0.15s ease;
+}
+.carimbo-link:hover { border-color: var(--carimbo); }
+.carimbo-link:active { transform: scale(0.98); }
+.carimbo-link .idx {
+  flex: none;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--carimbo-texto);
+  font-variant-numeric: tabular-nums;
+}
+.carimbo-link .txt {
+  flex: 1;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-stretch: 88%;
+  font-size: 15.5px;
+  letter-spacing: -0.005em;
+}
+.carimbo-link .seta {
+  flex: none;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--grafite);
+  transition: transform 0.25s var(--ease), color 0.15s ease;
+}
+.carimbo-link:hover .seta { transform: translate(2px, -2px); color: var(--carimbo); }
+
+.carimbo-link.destaque {
+  background: var(--carimbo-prensa);
+  border-color: var(--carimbo-prensa);
+  color: var(--papel);
+}
+.carimbo-link.destaque .idx, .carimbo-link.destaque .seta { color: var(--papel); }
+.carimbo-link.destaque:hover { background: var(--carimbo-hover); border-color: var(--carimbo-hover); }
+
+.carimbo-link.whats:hover { border-color: var(--whats-verde-escuro); }
+.carimbo-link.whats .idx { color: var(--whats-verde-escuro); }
+.carimbo-link.whats:hover .seta { color: var(--whats-verde-escuro); }
+
+.colofao {
+  margin-top: 40px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--grafite);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
